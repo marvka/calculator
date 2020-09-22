@@ -12,6 +12,12 @@ html, body {
 
 .button-grid {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(4, 1fr);
+  height: 100%;
+  width: 100%;
+  grid-template-rows: repeat(4, minmax(max-content, 100px));
+  grid-template-columns: repeat(4, minmax(max-content, 100px));
+  justify-content: center;
+  align-content: center;
 }
+
+button {}
