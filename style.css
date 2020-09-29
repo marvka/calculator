@@ -21,15 +21,24 @@ html, body {
   align-content: center;
 }
 
-#display {
+#display-wrapper {
+  display: flex;
   grid-row-start: 1;
   grid-column-start: 1;
   grid-column-end: span 4;
-  height: 50%;
-  padding-right: .5em;
   align-self: flex-end;
   text-align: right;
   font: 1rem sans-serif;
+  height: 75%;
+  padding-right: .5em;
+  border: 1px solid #ccc;
+  border-radius: .3rem;
+}
+
+#display {
+  margin: 0;
+  width: 100%;
+  align-self: center;
 }
 
 button#clear {
