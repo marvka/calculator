@@ -36,3 +36,7 @@ function operate(operator, num1, num2) {
 function isOperator(value) {
   return /[+-/*]/.test(value);
 }
+
+let num1, num2, numBuffer, result, operator;
+let buttons = document.querySelectorAll("button");
+let display = document.querySelector("#display");
