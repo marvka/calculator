@@ -32,3 +32,7 @@ function operate(operator, num1, num2) {
       return "Error";
   }
 }
+
+function isOperator(value) {
+  return /[+-/*]/.test(value);
+}
