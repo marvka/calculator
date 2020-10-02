@@ -39,14 +39,22 @@ function isNumber(value) {
 }
 
 // Button functionality
-function numButton(event) {}
+function numButton(event) {
+  let buttonNumber = event.target.textContent;
+  numBuffer += buttonNumber;
+  display.textContent += buttonNumber;
+}
 function equalsButton(event) {}
 function clearButton(event) {}
 function operatorButton(event) {}
 function dotButton(event) {}
 
 // Main code
-let num1, num2, numBuffer, result, operator;
+let num1,
+  num2,
+  numBuffer = "",
+  result,
+  operator;
 let buttons = document.querySelectorAll("button");
 let display = document.querySelector("#display");
 
