@@ -1,19 +1,16 @@
+// Basic calculating functions
 function add(num1, num2) {
   return num1 + num2;
 }
-
 function subtract(num1, num2) {
   return num1 - num2;
 }
-
 function multiply(num1, num2) {
   return num1 * num2;
 }
-
 function divide(num1, num2) {
   return num1 / num2;
 }
-
 function operate(operator, num1, num2) {
   switch (operator) {
     case "+":
@@ -33,10 +30,36 @@ function operate(operator, num1, num2) {
   }
 }
 
+// Function to check type of value
 function isOperator(value) {
-  return /[+-/*]/.test(value);
+  return /[-+%*]/.test(value);
+}
+function isNumber(value) {
+  return /[0-9]/.test(value);
 }
 
+// Button functionality
+function numButton(event) {}
+function equalsButton(event) {}
+function clearButton(event) {}
+function operatorButton(event) {}
+function dotButton(event) {}
+
+// Main code
 let num1, num2, numBuffer, result, operator;
 let buttons = document.querySelectorAll("button");
 let display = document.querySelector("#display");
+
+buttons.forEach((button) => {
+  if (isNumber(button.textContent)) {
+    button.addEventListener("click", numButton);
+  } else if (button.textContent === "=") {
+    button.addEventListener("click", equalsButton);
+  } else if (button.textContent === "Clear") {
+    button.addEventListener("click", clearButton);
+  } else if (isOperator(button.textContent)) {
+    button.addEventListener("click", operatorButton);
+  } else if (button.textContent === ".") {
+    button.addEventListener("click", dotButton);
+  }
+});
