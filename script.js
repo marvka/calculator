@@ -45,7 +45,14 @@ function numButton(event) {
   display.textContent += buttonNumber;
 }
 function equalsButton(event) {}
-function clearButton(event) {}
+function clearButton(event) {
+  num1 = "";
+  num2 = "";
+  numBuffer = "";
+  result = "";
+  operator = "";
+  display.textContent = "";
+}
 function operatorButton(event) {}
 function dotButton(event) {}
 
