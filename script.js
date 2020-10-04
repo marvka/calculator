@@ -54,7 +54,14 @@ function clearButton(event) {
   display.textContent = "";
 }
 function operatorButton(event) {}
-function dotButton(event) {}
+function dotButton(event) {
+  if (numBuffer.includes(".")) {
+    return;
+  } else {
+    numBuffer += ".";
+    display.textContent += ".";
+  }
+}
 
 // Main code
 let num1,
