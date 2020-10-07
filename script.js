@@ -52,6 +52,19 @@ function clear() {
 function addNumber(event) {
   display.textContent += event.target.textContent;
 }
+function equals() {
+  if (/\d+ [-+/*] $/.test(display.textContent)) {
+    display.textContent = display.textContent.substring(
+      0,
+      display.textContent.length - 3
+    );
+  } else if (/\d+ [-+\/*] \d+/.test(display.textContent)) {
+    let num1 = display.textContent.match(/^\d+/);
+    let num2 = display.textContent.match(/\d+$/);
+    let operator = display.textContent.match(/(?:\d+ )([-+/*])(?: \d+)/)[1];
+    display.textContent = operate(operator, num1, num2);
+  }
+}
 
 // Main code
 let buttons = document.querySelectorAll('button');
@@ -61,7 +74,7 @@ buttons.forEach((button) => {
   if (isNumber(button.textContent)) {
     button.addEventListener('click', addNumber);
   } else if (button.textContent === '=') {
-    // button.addEventListener('click', equalsButton);
+    button.addEventListener('click', equals);
   } else if (button.textContent === 'Clear') {
     button.addEventListener('click', clear);
   } else if (isOperator(button.textContent)) {
