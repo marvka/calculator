@@ -60,7 +60,7 @@ buttons.forEach((button) => {
   } else if (button.textContent === '=') {
     button.addEventListener('click', equalsButton);
   } else if (button.textContent === 'Clear') {
-    button.addEventListener('click', clearButton);
+    button.addEventListener('click', clear);
   } else if (isOperator(button.textContent)) {
     button.addEventListener('click', operatorButton);
   } else if (button.textContent === '.') {
