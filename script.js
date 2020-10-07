@@ -46,63 +46,8 @@ function operatorIndex() {
 }
 
 // Button functionality
-function numButton(event) {
-  let buttonNumber = event.target.textContent;
-  numBuffer += buttonNumber;
-  display.textContent += buttonNumber;
-}
-function equalsButton(event) {}
-function clearButton(event) {
-  num1 = '';
-  num2 = '';
-  numBuffer = '';
-  operator = '';
-  display.textContent = '';
-}
-function operatorButton(event) {
-  // Allow negative number in numBuffer
-  if (!numBuffer && !display.textContent && event.target.textContent == '-') {
-    numBuffer += '-';
-    display.textContent += '-';
-  }
-  // Change operator if already exists
-  if (numBuffer == '' && isOperator(display.textContent.charAt(operatorIndex()))
-  ) {
-    let output = display.textContent.split('');
-    output[operatorIndex()] = event.target.textContent;
-    display.textContent = output.join('');
-    operator = event.target.textContent;
-  } else if (!numBuffer) {
-      return;
-  } // If there's no operator yet and only the first number entered by user
-    else if (numBuffer && !num1 && !operator) {
-      num1 = numBuffer;
-      numBuffer = '';
-      operator = event.target.textContent;
-      display.textContent += ` ${operator} `;
-  } else if (numBuffer && num1 !== '' && !num2) {
-      num2 = numBuffer;
-      num1 = operate(operator, num1, num2);
-      numBuffer = '';
-      num2 = '';
-      operator = event.target.textContent;
-      display.textContent = `${num1} ${operator} `;
-  }
-}
-function dotButton(event) {
-  if (numBuffer.includes('.')) {
-    return;
-  } else {
-    numBuffer += '.';
-    display.textContent += '.';
-  }
-}
 
 // Main code
-let num1,
-  num2,
-  numBuffer = '',
-  operator;
 let buttons = document.querySelectorAll('button');
 let display = document.querySelector('#display');
 
