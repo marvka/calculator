@@ -49,6 +49,9 @@ function operatorIndex() {
 function clear() {
   display.textContent = '';
 }
+function addNumber(event) {
+  display.textContent += event.target.textContent;
+}
 
 // Main code
 let buttons = document.querySelectorAll('button');
@@ -56,14 +59,14 @@ let display = document.querySelector('#display');
 
 buttons.forEach((button) => {
   if (isNumber(button.textContent)) {
-    button.addEventListener('click', numButton);
+    button.addEventListener('click', addNumber);
   } else if (button.textContent === '=') {
-    button.addEventListener('click', equalsButton);
+    // button.addEventListener('click', equalsButton);
   } else if (button.textContent === 'Clear') {
     button.addEventListener('click', clear);
   } else if (isOperator(button.textContent)) {
-    button.addEventListener('click', operatorButton);
+    // button.addEventListener('click', operatorButton);
   } else if (button.textContent === '.') {
-    button.addEventListener('click', dotButton);
+    // button.addEventListener('click', dotButton);
   }
 });
