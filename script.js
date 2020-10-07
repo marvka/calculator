@@ -46,6 +46,9 @@ function operatorIndex() {
 }
 
 // Button functionality
+function clear() {
+  display.textContent = '';
+}
 
 // Main code
 let buttons = document.querySelectorAll('button');
