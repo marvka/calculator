@@ -34,11 +34,6 @@ function operate() {
   }
 }
 
-// Helper functions
-function operatorIndex() {
-  return display.textContent.length - 2;
-}
-
 // Button functionality
 function clear() {
   display.textContent = '';
