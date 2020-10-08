@@ -17,22 +17,22 @@ function operate() {
   let operator = display.textContent.match(
     /(?:^-?[\d.]+ )([-+/*])(?: [\d.]+)/
   )[1];
+  let result;
 
-  switch (operator) {
-    case '+':
-      return add(num1, num2);
-      break;
-    case '-':
-      return subtract(num1, num2);
-      break;
-    case '*':
-      return multiply(num1, num2);
-      break;
-    case '/':
-      return divide(num1, num2);
-      break;
-    default:
-      return 'Error';
+  if (operator === '+') {
+    result = add(num1, num2);
+  } else if (operator === '-') {
+    result = subtract(num1, num2);
+  } else if (operator === '*') {
+    result = multiply(num1, num2);
+  } else if (operator === '/') {
+    result = divide(num1, num2);
+  }
+
+  if (result % 1 && ('' + ('' + result).match(/\d+$/)).length > 4) {
+    return result.toFixed(4);
+  } else {
+    return result;
   }
 }
 
