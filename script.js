@@ -26,6 +26,10 @@ function operate() {
   } else if (operator === '*') {
     result = multiply(num1, num2);
   } else if (operator === '/') {
+    if (!num2) {
+      divideByZeroError = true;
+      return "Can't divide by zero";
+    }
     result = divide(num1, num2);
   }
 
@@ -41,7 +45,12 @@ function clear() {
   display.textContent = '';
 }
 function addNumber(event) {
-  display.textContent += event.target.textContent;
+  if (divideByZeroError) {
+    display.textContent = event.target.textContent;
+    divideByZeroError = false;
+  } else {
+    display.textContent += event.target.textContent;
+  }
 }
 function equals() {
   if (/^-?\d+ [-+/*] $/.test(display.textContent)) {
@@ -54,6 +63,12 @@ function equals() {
   }
 }
 function addOperator(event) {
+  if (divideByZeroError && event.target.textContent === '-') {
+    display.textContent = event.target.textContent;
+    divideByZeroError = false;
+  } else if (divideByZeroError) {
+    return;
+  }
   // Can't have two operators following one another
   if (/-?[\d.]+ [-+/*] $/.test(display.textContent)) {
     let string = display.textContent.split('');
@@ -72,7 +87,10 @@ function addOperator(event) {
 
 function addDot() {
   let currentNumber = display.textContent.match(/[\d.]+$/);
-  if (!currentNumber || !currentNumber.toString().match(/\./g)) {
+  if (divideByZeroError) {
+    display.textContent = '.';
+    divideByZeroError = false;
+  } else if (!currentNumber || !currentNumber.toString().match(/\./g)) {
     display.textContent += '.';
   } else {
     return;
@@ -82,6 +100,7 @@ function addDot() {
 // Main code
 let buttons = document.querySelectorAll('button');
 let display = document.querySelector('#display');
+let divideByZeroError = false;
 
 buttons.forEach((button) => {
   if (/[0-9]/.test(button.textContent)) {
