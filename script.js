@@ -12,9 +12,11 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 function operate() {
-  let num1 = +display.textContent.match(/^-?\d+/);
-  let num2 = +display.textContent.match(/\d+$/);
-  let operator = display.textContent.match(/(?:^-?\d+ )([-+/*])(?: \d+)/)[1];
+  let num1 = +display.textContent.match(/^-?[\d.]+/);
+  let num2 = +display.textContent.match(/[\d.]+$/);
+  let operator = display.textContent.match(
+    /(?:^-?[\d.]+ )([-+/*])(?: [\d.]+)/
+  )[1];
 
   switch (operator) {
     case '+':
@@ -47,23 +49,33 @@ function equals() {
       0,
       display.textContent.length - 3
     );
-  } else if (/^-?\d+ [-+/*] \d+$/.test(display.textContent)) {
+  } else if (/^-?[\d.]+ [-+/*] [\d.]+$/.test(display.textContent)) {
     display.textContent = operate();
   }
 }
 function addOperator(event) {
   // Can't have two operators following one another
-  if (/-?\d+ [-+/*] $/.test(display.textContent)) {
+  if (/-?[\d.]+ [-+/*] $/.test(display.textContent)) {
     let string = display.textContent.split('');
     string[string.length - 2] = event.target.textContent;
     display.textContent = string.join('');
   }
+
   if (/^$/.test(display.textContent) && event.target.textContent == '-') {
-    display.textContent += event.target.textContent;
-  } else if (/^-?\d+$/.test(display.textContent)) {
-    display.textContent += ` ${event.target.textContent} `;
-  } else if (/^-?\d+ [-+/*] \d+$/.test(display.textContent)) {
-    display.textContent = `${operate()} ${event.target.textContent} `;
+    display.textContent += event.target.textContent; // Add a minus if display is empty
+  } else if (/^-?[\d.]+$/.test(display.textContent)) {
+    display.textContent += ` ${event.target.textContent} `; // Add operator if the first number has been entered
+  } else if (/^-?[\d.]+ [-+/*] [\d.]+$/.test(display.textContent)) {
+    display.textContent = `${operate()} ${event.target.textContent} `; // Operate on both numbers and use result as first number
+  }
+}
+
+function addDot() {
+  let currentNumber = display.textContent.match(/[\d.]+$/);
+  if (!currentNumber || !currentNumber.toString().match(/\./g)) {
+    display.textContent += '.';
+  } else {
+    return;
   }
 }
 
@@ -81,6 +93,6 @@ buttons.forEach((button) => {
   } else if (/[-+/*]/.test(button.textContent)) {
     button.addEventListener('click', addOperator);
   } else if (button.textContent === '.') {
-    // button.addEventListener('click', dotButton);
+    button.addEventListener('click', addDot);
   }
 });
