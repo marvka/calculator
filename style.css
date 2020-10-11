@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -15,8 +16,8 @@ html, body {
   display: grid;
   height: 100%;
   width: 100%;
-  grid-template-rows: repeat(6, minmax(max-content, 100px));
-  grid-template-columns: repeat(4, minmax(max-content, 100px));
+  grid-template-rows: 10% repeat(5, 15vh);
+  grid-template-columns: repeat(4, 15vh);
   justify-content: center;
   align-content: center;
 }
@@ -30,9 +31,10 @@ html, body {
   text-align: right;
   font: 1rem sans-serif;
   height: 75%;
-  padding-right: .5em;
+  padding-right: 0.5em;
   border: 1px solid #ccc;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
+  overflow: hidden;
 }
 
 #display {
