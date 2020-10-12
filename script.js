@@ -45,11 +45,18 @@ function clear() {
   display.textContent = '';
 }
 function addNumber(event) {
+  let key;
+  if (event.key) {
+    key = event.key;
+  } else {
+    key = event.target.textContent;
+  }
+
   if (divideByZeroError) {
-    display.textContent = event.target.textContent;
+    display.textContent = key;
     divideByZeroError = false;
   } else {
-    display.textContent += event.target.textContent;
+    display.textContent += key;
   }
 }
 function equals() {
@@ -113,5 +120,11 @@ buttons.forEach((button) => {
     button.addEventListener('click', addOperator);
   } else if (button.textContent === '.') {
     button.addEventListener('click', addDot);
+  }
+});
+
+window.addEventListener('keydown', (e) => {
+  if (/[0-9]/.test(e.key)) {
+    addNumber(e);
   }
 });
