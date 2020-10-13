@@ -126,5 +126,7 @@ buttons.forEach((button) => {
 window.addEventListener('keydown', (e) => {
   if (/[0-9]/.test(e.key)) {
     addNumber(e);
+  } else if (/=/.test(e.key)) {
+    equals();
   }
 });
