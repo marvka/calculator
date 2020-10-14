@@ -40,18 +40,21 @@ function operate() {
   }
 }
 
+// Helper functions
+function setKey(event) {
+  if (event.key) {
+    return event.key;
+  } else {
+    return event.target.textContent;
+  }
+}
+
 // Button functionality
 function clear() {
   display.textContent = '';
 }
 function addNumber(event) {
-  let key;
-  if (event.key) {
-    key = event.key;
-  } else {
-    key = event.target.textContent;
-  }
-
+  let key = setKey(event);
   if (divideByZeroError) {
     display.textContent = key;
     divideByZeroError = false;
@@ -70,8 +73,10 @@ function equals() {
   }
 }
 function addOperator(event) {
-  if (divideByZeroError && event.target.textContent === '-') {
-    display.textContent = event.target.textContent;
+  let key = setKey(event);
+
+  if (divideByZeroError && key === '-') {
+    display.textContent = key;
     divideByZeroError = false;
   } else if (divideByZeroError) {
     return;
@@ -79,19 +84,18 @@ function addOperator(event) {
   // Can't have two operators following one another
   if (/-?[\d.]+ [-+/*] $/.test(display.textContent)) {
     let string = display.textContent.split('');
-    string[string.length - 2] = event.target.textContent;
+    string[string.length - 2] = key;
     display.textContent = string.join('');
   }
 
-  if (/^$/.test(display.textContent) && event.target.textContent == '-') {
-    display.textContent += event.target.textContent; // Add a minus if display is empty
+  if (/^$/.test(display.textContent) && key == '-') {
+    display.textContent += key; // Add a minus if display is empty
   } else if (/^-?[\d.]+$/.test(display.textContent)) {
-    display.textContent += ` ${event.target.textContent} `; // Add operator if the first number has been entered
+    display.textContent += ` ${key} `; // Add operator if the first number has been entered
   } else if (/^-?[\d.]+ [-+/*] [\d.]+$/.test(display.textContent)) {
-    display.textContent = `${operate()} ${event.target.textContent} `; // Operate on both numbers and use result as first number
+    display.textContent = `${operate()} ${key} `; // Operate on both numbers and use result as first number
   }
 }
-
 function addDot() {
   let currentNumber = display.textContent.match(/[\d.]+$/);
   if (divideByZeroError) {
@@ -126,7 +130,10 @@ buttons.forEach((button) => {
 window.addEventListener('keydown', (e) => {
   if (/[0-9]/.test(e.key)) {
     addNumber(e);
-  } else if (/=/.test(e.key)) {
+  } else if (/=|(Enter)/.test(e.key)) {
     equals();
+  } else if (/[-+/*]/.test(e.key)) {
+    addOperator(e);
   }
+  console.log(e.key);
 });
