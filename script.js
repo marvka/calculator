@@ -134,6 +134,8 @@ window.addEventListener('keydown', (e) => {
     equals();
   } else if (/[-+/*]/.test(e.key)) {
     addOperator(e);
+  } else if (/\./.test(e.key)) {
+    addDot();
   }
   console.log(e.key);
 });
