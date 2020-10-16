@@ -136,6 +136,18 @@ window.addEventListener('keydown', (e) => {
     addOperator(e);
   } else if (/\./.test(e.key)) {
     addDot();
+  } else if (/(Backspace)/.test(e.key)) {
+    if (display.textContent.charAt(display.textContent.length - 1) == ' ') {
+      display.textContent = display.textContent.substring(
+        0,
+        display.textContent.length - 3
+      );
+    } else {
+      display.textContent = display.textContent.substring(
+        0,
+        display.textContent.length - 1
+      );
+    }
   }
   console.log(e.key);
 });
