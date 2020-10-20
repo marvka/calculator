@@ -1,12 +1,48 @@
 html,
 body {
-  font-family: sans-serif;
-  height: 100%;
   margin: 0;
+  height: 100%;
+  font-family: sans-serif;
 }
 
-button {
-  border: 1px solid #ccc;
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.calc-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 15vh);
+  grid-template-rows: 10vh repeat(5, 15vh);
+  background-color: #ccc;
+  /* grid-gap: 20px; */
+}
+
+#display-wrapper {
+  display: flex;
+  background-color: #fff;
+  height: 100%;
+  overflow: hidden;
+  padding-right: 0.5em;
+  font: 1rem sans-serif;
+  align-self: flex-end;
+  grid-column-end: span 4;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  text-align: right;
+}
+
+#display {
+  margin: 0;
+  width: 100%;
+  font-family: monospace;
+  font-size: 1.5rem;
+  align-self: center;
 }
 
 button#clear {
@@ -14,42 +50,8 @@ button#clear {
   grid-row: 2;
 }
 
-.calc-grid {
-  display: grid;
-  align-content: center;
-  grid-template-columns: repeat(4, 15vh);
-  grid-template-rows: 10% repeat(5, 15vh);
-  height: 100%;
-  justify-content: center;
-  width: 100%;
-}
-
-#display {
-  align-self: center;
-  margin: 0;
-  width: 100%;
-}
-
-#display-wrapper {
-  display: flex;
-  align-self: flex-end;
-  border: 1px solid #ccc;
-  font: 1rem sans-serif;
-  grid-column-end: span 4;
-  grid-column-start: 1;
-  grid-row-start: 1;
-  height: 75%;
-  overflow: hidden;
-  padding-right: 0.5em;
-  text-align: right;
-}
-
-.flex-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
+button:hover {
+  background-color: inherit;
 }
 
 .span-two {
