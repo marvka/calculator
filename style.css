@@ -20,7 +20,8 @@ body {
   grid-template-columns: repeat(4, 15vh);
   grid-template-rows: 10vh repeat(5, 15vh);
   background-color: #ccc;
-  /* grid-gap: 20px; */
+  grid-gap: 1px;
+  border: 1px solid #ccc;
 }
 
 #display-wrapper {
