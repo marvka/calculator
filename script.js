@@ -148,6 +148,8 @@ window.addEventListener('keydown', (e) => {
         display.textContent.length - 1
       );
     }
+  } else if (/(Escape)/.test(e.key)) {
+    clear();
   }
   console.log(e.key);
 });
