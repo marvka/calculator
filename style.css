@@ -7,9 +7,9 @@
 html,
 body {
   margin: 0;
+  background-color: #111;
   height: 100%;
   font-family: sans-serif;
-  background-color: #111;
   font-size: 1.5em;
 }
 
@@ -27,9 +27,9 @@ body {
   align-content: center;
   grid-template-columns: repeat(4, 15vh);
   grid-template-rows: 10vh repeat(5, 15vh);
-  background-color: #414141;
   grid-gap: 1px;
   border: 1px solid #414141;
+  background-color: #414141;
 }
 
 #display-wrapper {
@@ -48,8 +48,8 @@ body {
 #display {
   margin: 0;
   width: 100%;
-  align-self: center;
   color: #fdfdfd;
+  align-self: center;
 }
 
 button {
